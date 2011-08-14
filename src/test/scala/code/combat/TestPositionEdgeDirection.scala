@@ -8,8 +8,10 @@ package test.dylan.data
 import org.junit._
 import Assert._
 import com.dylan.data._
+import org.scalatest.junit.JUnitSuite
+import org.scalatest.junit.ShouldMatchersForJUnit
 
-class TestPositionEdgeDirection {
+class TestPositionEdgeDirection extends JUnitSuite with ShouldMatchersForJUnit{
 
 	@Before
 	def setUp: Unit = {

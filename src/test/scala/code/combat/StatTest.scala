@@ -7,14 +7,14 @@ package test.dylan.battles
 
 import org.junit._
 import Assert._
-import com.dylan.battles.{Stat, StatMod, StatModAlignment, StatModDuration, StatModSubject, StatModCritereaChanged}
+import com.dylan.battles.{Stat, DerivedStat, StatMod, StatModAlignment, StatModDuration, StatModSubject, StatModCritereaChanged}
 import com.dylan.battles.StatMod._
 import com.dylan.meta.Description
 import org.scalatest.junit.JUnitSuite
 import org.scalatest.junit.ShouldMatchersForJUnit
 import scala.xml.Text
 
-class StatRefactorTest extends JUnitSuite with ShouldMatchersForJUnit{
+class StatTest extends JUnitSuite with ShouldMatchersForJUnit{
 
 	trait StatDescription extends Description{
 		def name = "stat"
@@ -331,4 +331,22 @@ class StatRefactorTest extends JUnitSuite with ShouldMatchersForJUnit{
 		stat.current should be (15)
 	}
 	//TODO: make derived stats and test them in similar situations
+	@Test
+	def testDerivedStat = {
+		val base = new Stat(10) with StatDescription
+		val derived = DerivedStat(base)(_.current * 2)(new StatDescription{})
+		derived.max should be (20)
+		derived.current should be (20)
+		val damage = StatMod.Damage(5)
+		base += damage
+		derived.max should be (10)
+		derived.current should be (10)
+		derived += damage
+		derived.current should be (5)
+		val heal = StatMod.Restore(5)
+		base += heal
+		base.current should be (10)
+		derived.max should be (20)
+		derived.current should be (10)
+	}
 }

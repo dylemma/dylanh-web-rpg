@@ -8,8 +8,9 @@ package test.dylan.controller
 import org.junit._
 import Assert._
 import com.dylan.controller._
+import org.scalatest.junit.JUnitSuite
 
-class ControllerTest {
+class ControllerTest extends JUnitSuite{
 
 	case class IntMessage(i:Int) extends InteractionMessage
 	case class StringMessage(s:String) extends InteractionMessage

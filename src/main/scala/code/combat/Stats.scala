@@ -215,4 +215,15 @@ abstract class Stat(baseValue: =>Double) extends Subscriber[StatModCritereaChang
 		this
 	}
 }
+
+object DerivedStat {
+	private def makeDescribedStat(base: =>Double)(descriptor:Description) = new Stat(base) {
+		def name = descriptor.name
+		def description = descriptor.description
+	}
+
+	def apply(stat:Stat)(derive:(Stat)=>Double)(descriptor:Description) = makeDescribedStat(derive(stat))(descriptor)
+	def apply(stat1:Stat, stat2:Stat)(derive:(Stat,Stat)=>Double)(descriptor:Description) = makeDescribedStat(derive(stat1,stat2))(descriptor)
+	def apply(stat1:Stat, stat2:Stat, stat3:Stat)(derive:(Stat,Stat,Stat)=>Double)(descriptor:Description) = makeDescribedStat(derive(stat1, stat2, stat3))(descriptor)
+}
 	

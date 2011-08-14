@@ -8,8 +8,9 @@ package test.dylan.data
 import org.junit._
 import Assert._
 import com.dylan.data._
+import org.scalatest.junit.JUnitSuite
 
-class GraphMapTest {
+class GraphMapTest extends JUnitSuite{
 
 	@Before
 	def setUp: Unit = {
