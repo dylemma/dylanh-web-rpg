@@ -8,7 +8,7 @@ import scala.collection.SortedMap
  */
 case class DepRepValue(current: Double, max: Double) {
 	def modifyMax(modify: (Double) => Double) = {
-		val ratio = current / max
+		val ratio = if (max == 0.0) 1 else current / max
 		val newMax = modify(max)
 		val newCurr = newMax * ratio
 		DepRepValue(newCurr, newMax)
@@ -161,15 +161,26 @@ abstract class Stat[A](val baseValue: Criterea[A]) extends Criterea[A] with Desc
 }
 
 abstract class DepRepStat(private val maxValueCriterea: Criterea[Double]) extends Criterea[DepRepValue] with Description {
-	protected lazy val initialCritereaValue = DepRepValue(maxValueCriterea.value, maxValueCriterea.value)
+	//an inner stat instance will keep track of mods (e.g. buffs) to the max value
+	private lazy val maxValueStat = new Stat(maxValueCriterea) {
+		val name = "innerStat"
+		val description = <span>Inner Stat</span>
+	}
 
-	object MaxValueChangeObserver extends Dependent[Double] {
+	protected lazy val initialCritereaValue = DepRepValue(maxValueStat.value, maxValueStat.value)
+
+	//cascade changes from the inner stat instance to the actual value of this stat
+	private object MaxValueChangeObserver extends Dependent[Double] {
 		def observeCritereaChanged(oldValue: Double, newValue: Double) = value = value.withMax(newValue)
 	}
-	maxValueCriterea.addDependent(MaxValueChangeObserver)
+	maxValueStat.addDependent(MaxValueChangeObserver)
 
 	def +=(amount: Double) = { value = value.replenishCurrent(amount); this }
 	def -=(amount: Double) = { value = value.depleteCurrent(amount); this }
+
+	//delegate the += and -= methods for mods to the inner stat
+	def +=(mod: StatMod[Double]) = { maxValueStat += mod; this }
+	def -=(mod: StatMod[Double]) = { maxValueStat -= mod; this }
 
 	def currentValue = value.current
 	def maxValue = value.max

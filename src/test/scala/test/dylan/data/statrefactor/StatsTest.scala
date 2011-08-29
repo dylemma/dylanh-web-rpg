@@ -245,4 +245,28 @@ class StatTest extends JUnitSuite with ShouldMatchersForJUnit {
 
 		d.history should be(lb.toList)
 	}
+
+	@Test
+	def testDepRepWithMod = {
+		val base = Criterea(0.0)
+		val stat = new DepRepStat(base) with GenericDescription
+		val d = new HistoryDependent[DepRepValue]
+		val lb = new ListBuffer[DepRepValue]
+		stat.addDependent(d)
+
+		base.value = 10
+		lb += DepRepValue(10, 10)
+
+		val mod = new SimpleStatMod[Double](_ + 100, priority = 2, Timeframe.Permanent, Affiliation.Friendly)
+		stat += mod
+		lb += DepRepValue(110, 110)
+
+		stat -= 55
+		lb += DepRepValue(55, 110)
+
+		stat -= mod
+		lb += DepRepValue(5, 10)
+
+		d.history should be(lb.toList)
+	}
 }
