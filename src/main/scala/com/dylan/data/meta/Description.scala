@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package com.dylan.meta
+package com.dylan.data.meta
 
 import scala.xml.NodeSeq
 

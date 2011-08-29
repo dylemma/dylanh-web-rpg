@@ -4,10 +4,6 @@ import org.junit._
 import Assert._
 import org.scalatest.junit.JUnitSuite
 import org.scalatest.junit.ShouldMatchersForJUnit
-import scalax.collection.Graph
-import scalax.collection.GraphPredef._
-import scalax.collection.GraphEdge._
-import scalax.collection.edge.Implicits._
 import com.dylan.data.graphs._
 import GraphAlg._
 

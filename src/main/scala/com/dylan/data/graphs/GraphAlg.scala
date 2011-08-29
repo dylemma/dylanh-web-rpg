@@ -5,7 +5,7 @@ object GraphAlg {
 	def DijkstraWeighted[Input, Node, Edge, Weight] // templates, rawr!
 	(input: Input, start: Node) // input object, start node
 	(implicit graphAdaptor: PartialGraphAdaptor[Node, Edge, Input], weightsAdaptor: PartialWeightedEdgesAdaptor[Edge, Weight, Input], numeric: Numeric[Weight]) //implicit adaptors
-	: Map[Node, Weight] = //return type
+	: Map[Node, (Weight, Option[(Node, Edge)])] = //return type
 		{
 			val g = graphAdaptor.adaptGraph(input)
 			val w = weightsAdaptor.adaptWeights(input)
@@ -15,7 +15,7 @@ object GraphAlg {
 
 	def DijkstraWeighted[Node, Edge, Weight](graph: WeightedGraph[Node, Edge, Weight], start: Node)(implicit numeric: Numeric[Weight]) = Dijkstra(graph, start, graph.weight _)
 
-	def DijkstraUnweighted[Input, Node, Edge](input: Input, start: Node)(implicit graphAdaptor: PartialGraphAdaptor[Node, Edge, Input]): Map[Node, Int] =
+	def DijkstraUnweighted[Input, Node, Edge](input: Input, start: Node)(implicit graphAdaptor: PartialGraphAdaptor[Node, Edge, Input]): Map[Node, (Int, Option[(Node, Edge)])] =
 		{
 			val g = graphAdaptor.adaptGraph(input)
 			DijkstraUnweighted(g, start)
@@ -23,7 +23,7 @@ object GraphAlg {
 
 	def DijkstraUnweighted[Node, Edge](graph: Graph[Node, Edge], start: Node) = Dijkstra(graph, start, (e: Edge) => 1)
 
-	def Dijkstra[Node, Edge, Weight](graph: Graph[Node, Edge], start: Node, weight: (Edge) => Weight)(implicit numeric: Numeric[Weight]): Map[Node, Weight] = {
+	def Dijkstra[Node, Edge, Weight](graph: Graph[Node, Edge], start: Node, weight: (Edge) => Weight)(implicit numeric: Numeric[Weight]): Map[Node, (Weight, Option[(Node, Edge)])] = {
 		if (!graph.contains(start)) throw new IllegalArgumentException("Start node must be contained in the graph");
 
 		import numeric._
@@ -57,13 +57,12 @@ object GraphAlg {
 							dist.update(v, alt)
 							prev.update(v, (u, uv))
 							queue = queue.sorted(QOrdering)
-							println("reached " + v + " from " + u + " with dist " + dist(v))
 						}
 					}
 				}
 			}
 		}
-		dist.toMap
+		(for (node <- dist.keysIterator) yield (node, (dist(node), prev.get(node)))) toMap
 	}
 
 }

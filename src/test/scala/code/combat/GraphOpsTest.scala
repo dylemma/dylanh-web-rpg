@@ -7,9 +7,12 @@ package test.dylan.data
 
 import org.junit._
 import Assert._
-import com.dylan.data._
+import com.dylan.data.Position
+import com.dylan.data.graphs._
+import GraphAlg._
+import org.scalatest.junit.JUnitSuite
 
-class GraphOpsTest {
+class GraphOpsTest extends JUnitSuite {
 
 	@Before
 	def setUp: Unit = {
@@ -21,13 +24,13 @@ class GraphOpsTest {
 
 	@Test
 	def testDijkstra = {
-		val graph = new GraphMap[Int](GraphStructureGenerator.rectangularComplete(5,5))
-		val result = GraphOps.Dijkstra(graph, Position(0,0))
+		val graph = new GridGraph(-2.0 to 2 by 1, -2.0 to 2 by 1)
+		val result = DijkstraWeighted(graph, Position(0, 0))
 		//
 		println("=================================")
 		println("        Dijkstra's Output        ")
 		println("=================================")
-		for((pos,(dist,prev))<-result){
+		for ((pos, (dist, prev)) <- result) {
 			println("Found " + pos + " at " + dist + " away from start. Came from " + prev)
 		}
 	}
