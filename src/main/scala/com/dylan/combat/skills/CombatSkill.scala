@@ -5,11 +5,11 @@
 
 package com.dylan.combat.skills
 
-import com.dylan.battle.Combattant
 import com.dylan.data._
 import graphs.GraphAlg._
 import Numeric.Implicits._
 import com.dylan.data.meta.Description
+import com.dylan.combat.Combattant
 
 /**
  * A `TargetMode` instance determines the set of Positions that a user can target
@@ -22,6 +22,7 @@ abstract class TargetMode {
 }
 
 class SelfTarget extends TargetMode {
+	@Override
 	def validTargets(origin: Position, environment: PositionMap[_]) = Set(origin)
 }
 
