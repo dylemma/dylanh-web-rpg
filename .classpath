@@ -3,6 +3,7 @@
   <classpathentry output=".target\scala-2.9.0.final\classes" kind="src" path="src\main\resources"></classpathentry>
   <classpathentry output=".target\scala-2.9.0.final\test-classes" kind="src" path="src\test\scala"></classpathentry>
   <classpathentry output=".target\scala-2.9.0.final\test-classes" kind="src" path="src\test\resources"></classpathentry>
+  <classpathentry kind="lib" path="C:\code\scala\web-rpg\lib\jgrapht-jdk1.6.jar"></classpathentry>
   <classpathentry kind="lib" path="C:\Users\Dylan\.ivy2\cache\org.scalatest\scalatest_2.9.0\jars\scalatest_2.9.0-1.6.1.jar"></classpathentry>
   <classpathentry kind="lib" path="C:\Users\Dylan\.ivy2\cache\net.liftweb\lift-webkit_2.9.0\jars\lift-webkit_2.9.0-2.4-M1.jar"></classpathentry>
   <classpathentry kind="lib" path="C:\Users\Dylan\.ivy2\cache\commons-fileupload\commons-fileupload\jars\commons-fileupload-1.2.2.jar"></classpathentry>
