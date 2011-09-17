@@ -1,0 +1,38 @@
+<skills>
+	<!-- Basic Melee Attack -->
+	<skill name="Attack" id="1">
+		<target mode="Direct" range="1"/>
+		<bloom mode="Target"/>
+		<effects>
+			<effect kind="damage" type="physical" amount="weapon.damage + str"/>
+		</effects>
+	</skill>
+	
+	<!-- Basic Wand Attack -->
+	<skill name="Attack" id="2">
+		<target mode="Direct" range="3"/>
+		<bloom mode="Target"/>
+		<effects>
+			<effect kind="damage" type="physical" amount="weapon.damage + int"/>
+		</effects>
+	</skill>
+	
+	<!-- Basic Bow Attack -->
+	<skill name="Attack" id="3">
+		<target mode="Direct" range="5"/>
+		<bloom mode="Target"/>
+		<effects>
+			<effect kind="damage" type="physical" amount="weapon.damage + agi"/>
+		</effects>
+	</skill>
+	
+	<!-- Fireball -->
+	<skill name="Flare" id="4">
+		<target mode="Direct" range="3"/>
+		<bloom mode="Target"/>
+		<effects>
+			<effect kind="damage" type="fire" amount="int + wil"/>
+			<effect kind="enchant" enchantid="1" chance="0.10"/>
+		</effects>
+	</skill>
+</skills>

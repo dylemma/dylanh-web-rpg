@@ -1,0 +1,172 @@
+Melee attack (melee weapon)
+	effects = {
+		damage(weapon damage * weapon proficiency, type=physical)
+	}
+	range = weapon range (1 to 2)
+	target mode = non-blocking direct
+	bloom mode = only target
+	
+Wand attack (wand or staff)
+	effects = {
+		damage(weapon damage * weapon proficiency, type=elemental(wand type))
+	}
+	range = weapon range (3 to 4)
+	target mode = direct
+	bloom mode = only target
+	
+Bow attack (bow)
+	effects = {
+		damage(weapon damage * weapon proficiency, type=physical)
+	}
+	range = weapon range (4 to 5)
+	target mode = direct
+	bloom mode = only target
+	
+Gash attack (blade weapon)
+	effects = {
+		damage(weapon damage * weapon prificiency + strength + speed)
+		condition(bleeding, chance=20%)
+	}
+	range = weapon range (1 to 2)
+	target mode = non-blocking direct
+	bloom mode = only target
+	
+Basic Elemental Ranged Attack (fire, lightning, water, earth)
+	effects = {
+		damage(int+willpower, type=elemental)
+	}
+	range = 4
+	target mode = direct
+	bloom mode = only target
+	
+Basic Elemental Touch Attack
+	effects = {
+		damage((int+willpower)*1.2, type=fire)
+		(fire) => condition(burn 5 turns, chance=50%)
+		(lightning) => condition(paralyze 1 turn, chance=25%)
+		(water) => condition(weak to electricity: 3 turns chance = 10%, 2:25%, 1:50%)
+		(earth) => condition(immobile 1 turn, chance=50%)
+	}
+	range = 1
+	target mode = direct
+	bloom mode = only target
+	
+Piercing Attack (bow) [agi, spd]
+	effects = {
+		damage(weapon damage * weapon proficiency + agility, type=piercing)
+		condition(bleeding, chance=40%)
+	}
+	range = 5
+	target mode = direct
+	bloom mode = only target
+	
+Crippling Attack (bow) [agi,spd]
+	effects = {
+		damage(weapon damage * weapon proficiency + agility, type=piercing)
+		condition(crippled, chance=40%)
+	}
+	range = 5
+	target mode = direct
+	bloom mode = only target
+	
+Basic Heal [int, wil]
+	(weak) heal. target ally. range=4
+	
+Party Heal [int, wil]
+	(weak) heal. target self, bloom=party. higher cost than basic heal
+	
+Strong Heal [int, wil]
+	heal target ally. range = 3. cost similar to party heal
+	
+Strong Heal (close range) [int, wil]
+	heal target ally. range = 1. cost similar to basic heal
+	
+Cure Condition [int, wil]
+	cures x conditions: (derive from time left, int, and willpower)
+	
+Concentrate (enchant) [wil, end]
+	for 1..5 turns, each turn int-based skills do (10% times the number
+	of turns the user has not been directly damaged) extra effectiveness
+	-needs to know when user takes direct damage
+	
+Stat Buff (enchant)
+	for X turns, stat Y is buffed by Z
+	
+Spike Trap (trap) [int,agi]
+	target ground position, range=1, restriction=unoccupied, bloom=target only
+	if an enemy enters the trapped position, inflict X piercing damage and cripple for 1 turn 100%
+	
+Exploding Trap (trap) [int,agi]
+	target ground pos, range=1, restriction=unoccupied, bloom=target only
+	if an enemy enters the trapped position, inflict X fire damage in an AoE radius 1 around the pos
+	
+Impaling Shot (bow) [str,agi]
+	target enemy, range = 4, bloom=line from user
+	inflict X piercing damage to first target, with a reduction of 50..10% for each subsequent target
+	(damage reduction depends on strength relative to level)
+	
+Enchant Attack (enchant) [int,wil]
+	target ally, range=3, bloom=target only
+	cause enchanted ally's attacks to deal an additional X [elemental] damage
+	
+Brace Yourself (enchant) [end,wil]
+	target self, bloom=target only
+	cause all damage to be reduced by 50% this and next turn
+	
+Move
+	target mode=pathfind, range=[depend on speed]
+	affected by things like crippling, reduced speed, other debuffs
+	
+Teleport
+	target direct ground, restriction=unoccupied, range=5
+	instantly transport caster to targetted position
+	
+Kneecrusher (hammer) [str,end]
+	attack for 1.5x weapon damage * hammer proficiency
+	(condition) target's move distance is cut in half (round down, min 1) for 2 turns or until healed
+	
+Inferno (fire) [int,wil]
+	target direct ground. for 3 turns, players standing within 1 tile of the target location will take X fire damage
+	
+Stone Wall (earth)
+	target direct ground, restriction=unoccupied, range=4
+	creates an impassible barrier with X hp that lasts 4 turns or until killed
+	(counts as a summon?)
+	
+Summon (some kind of) Pet
+	target direct ground, restriction=unoccupied, range=2
+	summons an animal ally next to the caster with X hp that lasts until killed
+	only one summon may be active per player at any time
+	
+Absorb Damage (enchant)
+	target ally direct, target only, range=4
+	for X turns, 50% of damage directed to target is redirected to caster, reduced by 10..50%
+	
+Well of (Stat) (enchant)
+	target ground position (no restriction)
+	for X turns, allies standing within 2 of the center will have +Y of (Stat)
+	
+Light Arrows (enchant)
+	target self
+	for X turns, arrows cause +Y extra fire damage and cause burning for 3 turns
+	
+Volley (bow) [spd,agi]
+	target direct, range=5, 
+	arrow attack that deals 3/4 damage, X times (depend on speed,agi)
+	
+Wolf Form [agi,spd]
+	target self
+	become a wolf. Speed is boosted by 1.X, attack is boosted by 1.Y, limited to wolf skills (e.g. bite, cancel-wolf-form)
+	
+Retaliate [agi,str]
+	target self
+	causes any melee attack against user to fail- user retaliates for 1.X times the damage that would have been done
+	
+Whirling Axe (axe, duh)
+	target self
+	causes weapon damage to all combattants within 1.5 of user (friendly fire)
+	
+Overhead Chop (axe)
+	target directional, bloom=first in the direction
+	causes 2x weapon damage * proficiency to victim
+	
