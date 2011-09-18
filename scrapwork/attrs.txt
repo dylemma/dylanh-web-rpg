@@ -1,0 +1,42 @@
+str		=> hp
+end		=> hp regen
+int		=> mana
+wil		=> mana regen
+agi		=> evasiveness
+spd		=> move dist + turn order
+
+str+end => heavy armor proficiency
+str+int => shouts
+str+wil => hammer proficiency
+str+agi => sword proficiency
+str+spd => hand to hand skills
+
+end+str => physical defense
+end+int => magic damage resistance
+end+wil => debuff resistance (buff boost)
+end+agi => shield skills
+end+spd => stamina (the cost for special physical attacks, and movement)
+
+int+str	=> earth magic
+int+end => healing magic
+int+wil => fire magic
+int+agi => water magic
+int+spd => lightning magic
+
+wil+str => force magic (push/pull)
+wil+end => protection magic
+wil+int => summoning magic
+wil+agi => illusion magic
+wil+spd => movement enhancement
+
+agi+str => parry/retaliation
+agi+end => survivability (like GW ranger)
+agi+int => bow proficiency
+agi+wil => animal forms
+agi+spd => dagger proficiency
+
+spd+str => scythe skills
+spd+end => light armor proficiency
+spd+int => trapping
+spd+wil => weapon modifications
+spd+agi => multistrike attacks
