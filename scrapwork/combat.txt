@@ -1,0 +1,86 @@
+Move selection:
+
+Preemptive Selection:
+	-players may pick a move that gets executed before the main movement turn
+		+guard skills that counteract attacks on them
+		+sneak attacks, etc (priority moves)
+		
+Main Selection:
+	-evaluated on a per-combattant basis, ordered by speed (either side)
+	-allows players to react to previous actions/occurances
+	
+PC Options:
+	-attack (weapon based attack)
+	-skill (special skillz)
+	-move
+	-item (from inventory) (counts as preemptive)
+	
+
+What's in a skill?
+	-target mode
+		+restriction
+	-bloom mode
+	-effects caused
+	-preemptive:Boolean
+	-governing attributes
+		+primary
+		+secondary
+	* reference to a description object for display purposes
+		
+What kind of target modes?
+	-direct combattant w/ range
+	-direct ground w/range
+	-pathfind w/range
+	-self
+	-directional
+	
+What kind of bloom modes?
+	-target only (more generally an AoE of 1)
+	-AoE around target
+	-line to target
+	-first in line (derived from 'line to target')
+	
+Types of effects?
+	-damage
+		+type
+		+amount
+		+some randomization ~ generalize as an "outgoing damage modifier"
+		+direct:Boolean
+		+alignment
+		+source:Skill
+	-healing
+		+amount
+		+alignment
+		+source:Skill
+	-add enchant (umbrella term for a recurring effect)
+		+alignment
+	-remove enchant
+		+alignment
+		
+Battlefield callbacks:
+	-certain events in the battlefield can activate a callback function
+		+player move
+		+turn end
+		+turn begin
+		+etc(?)
+		
+Various automatic things are affected by skills, such as...
+	-damage taken
+	-healing done
+	-retaliation
+	-dodge
+	-add/remove 'enchants'
+	
+A player can add/remove effect reactors
+	-damage
+		+change amount
+		+change type
+		+dodge (nullify damage)
+		+absorb (changes effect to a heal)
+		+retaliate (sets a new skill in motion)
+	-heal
+		+change amount
+		+redirect heal
+		
+A reaction consists of (Target, Reaction)
+		
