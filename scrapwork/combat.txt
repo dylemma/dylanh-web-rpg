@@ -121,3 +121,7 @@ StackPush	- a type of Response meaning that a new ReactTarget should be added to
 Acceptance	- a type of Response meaning that "something" happened to the Target and no further action is required
 Message		- a type of Response meaning that the combat system's UI should display a message: no further action
 Reactor		- an object that decides how to react to an Effect. A Target may have many Reactors. Acceptance reactions should be passed on to the next priority Reactor. Others will be returned.
+
+
+CombatField	- the field of combat. It is represented by a collection of positions
+CombatPosition - a position in combat. It may or may not be occupied by a combattant. It also may be impassable.

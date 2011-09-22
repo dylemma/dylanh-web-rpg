@@ -110,7 +110,7 @@ abstract class DependentStatMod[A, T](val getModifierFunc: (T) => (A) => A, val 
 
 abstract class Stat[A](val baseValue: Criterea[A]) extends Criterea[A] with Description {
 	implicit object StatModOrdering extends Ordering[StatMod[A]] {
-		def compare(x: StatMod[A], y: StatMod[A]) = x.priority - y.priority match {
+		def compare(x: StatMod[A], y: StatMod[A]) = (x.priority - y.priority) match {
 			case 0 => x.## - y.## //differentiate by hash codes or else same-priority mods will be treated as "equal"
 			case i => i //normal case: accept the priority difference
 		}

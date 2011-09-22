@@ -1,16 +1,16 @@
 package com.dylan.combat
+
 import org.jgrapht.Graph
-import com.dylan.data.{ Position, Adjacency }
 import scala.collection.JavaConversions._
 import org.jgrapht.alg.DijkstraShortestPath
 
-class CombatField(val graph: Graph[Position, Adjacency]) {
+class CombatField(val graph: Graph[CombatPosition, Adjacency]) {
 
-	def positions: Set[Position] = graph.vertexSet.toSet
+	def positions: Set[CombatPosition] = graph.vertexSet.toSet
 
-	def containsPosition(pos: Position) = graph.containsVertex(pos)
+	def containsPosition(pos: CombatPosition) = graph.containsVertex(pos)
 
-	def findPath(start: Position, end: Position, limit: Double = Double.MaxValue) = {
+	def findPath(start: CombatPosition, end: CombatPosition, limit: Double = Double.MaxValue) = {
 		val pathFinder = new DijkstraShortestPath(graph, start, end, limit)
 		pathFinder.getPath match {
 			case null => None

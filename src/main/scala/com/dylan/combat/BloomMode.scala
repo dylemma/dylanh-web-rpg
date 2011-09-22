@@ -1,7 +1,4 @@
-package com.dylan.combat.skills
-
-import com.dylan.data.Position
-import com.dylan.combat.CombatField
+package com.dylan.combat
 
 /**
  * A `BloomMode` instance controls where and how much a skill shows its effects, based on
@@ -13,5 +10,5 @@ abstract class BloomMode {
 	 * Returns a map of Positions affected by the skill, where a Position maps to a "percentage
 	 * effectiveness" value (from 0.0 to 1.0)
 	 */
-	def areaOfEffect(origin: Position, target: Position, environment: CombatField): Map[Position, Double]
+	def areaOfEffect(origin: CombatPosition, target: Target, environment: CombatField): Map[CombatPosition, Double]
 }

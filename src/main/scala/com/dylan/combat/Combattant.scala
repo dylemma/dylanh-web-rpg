@@ -1,5 +1,5 @@
 package com.dylan.combat
 
-class Combattant {
-
+trait Combattant extends Target {
+	//TODO def skills:List[Skill]
 }
