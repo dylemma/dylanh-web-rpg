@@ -1,4 +1,4 @@
-package test.dylan.data.statrefactor
+package test.dylan.data.stats
 
 import org.junit._
 import Assert._

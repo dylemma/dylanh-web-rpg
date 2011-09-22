@@ -1,6 +1,6 @@
 package com.dylan.combat
 
-import com.dylan.data.Vector
+import com.dylan.data.geom.Vector
 
 class CombatPosition(val location: Vector) extends Target {
 	var occupant: Option[Combattant] = None
