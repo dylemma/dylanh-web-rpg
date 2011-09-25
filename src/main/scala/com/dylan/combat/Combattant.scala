@@ -1,5 +1,7 @@
 package com.dylan.combat
 
 trait Combattant extends Target {
-	//TODO def skills:List[Skill]
+	def skills: List[Skill]
+	def turnProvider: CombatTurnProvider
+	def choiceProvider: SkillChoiceProvider
 }

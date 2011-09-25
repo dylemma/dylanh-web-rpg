@@ -1,5 +1,7 @@
 package com.dylan.combat
 
+import com.dylan.data.util._
+
 /**
  * An EffectReactor's job is simply to react to Effects.
  */
@@ -33,19 +35,10 @@ trait HasReactors {
 	def reactors = reactorsList
 
 	def addReactor(reactor: EffectReactor) = {
-		reactorsList = orderedInsert(reactor, reactorsList)
+		reactorsList = reactorsList.orderedInsert(reactor)
 	}
 
 	def removeReactor(reactor: EffectReactor) = {
 		reactorsList = reactorsList.remove(_ == reactor)
-	}
-
-	private def orderedInsert[T](elem: T, list: List[T])(implicit ordering: Ordering[T]): List[T] = list match {
-		case head :: tail => {
-			import ordering._
-			if (elem < head) elem :: head :: tail
-			else head :: orderedInsert(elem, tail)
-		}
-		case Nil => elem :: Nil
 	}
 }
