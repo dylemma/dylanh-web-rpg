@@ -7,8 +7,8 @@ package com.dylan.combat
  */
 abstract class BloomMode {
 	/**
-	 * Returns a map of Positions affected by the skill, where a Position maps to a "percentage
+	 * Returns a map of Targets affected by the skill, where a Position maps to a "percentage
 	 * effectiveness" value (from 0.0 to 1.0)
 	 */
-	def areaOfEffect(origin: CombatPosition, target: Target, environment: CombatField): Map[CombatPosition, Double]
+	def areaOfEffect(origin: CombatPosition, target: Target, environment: CombatField): Map[Target, Double]
 }

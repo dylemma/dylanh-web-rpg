@@ -125,3 +125,8 @@ Reactor		- an object that decides how to react to an Effect. A Target may have m
 
 CombatField	- the field of combat. It is represented by a collection of positions
 CombatPosition - a position in combat. It may or may not be occupied by a combattant. It also may be impassable.
+
+SkillsController - Handles the execution of a skill: (user:Combattant, target:Target, skill:Skill)
+case class EffectUsage(effect:Effect, user:Combattant, target:Target)
+
+

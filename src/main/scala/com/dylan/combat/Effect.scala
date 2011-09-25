@@ -1,6 +1,9 @@
 package com.dylan.combat
 
-trait Effect
+trait Effect {
+	def source: Combattant
+	def withEffectiveness(e: Double): Effect
+}
 
 //TODO Damage
 
