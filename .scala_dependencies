@@ -11,6 +11,8 @@ C:\Code\dylanh-web-rpg\src\main\scala\com\dylan\combat\Skill.scala -> C:\Code\dy
 C:\Code\dylanh-web-rpg\src\main\scala\com\dylan\combat\Skill.scala -> C:\Code\dylanh-web-rpg\src\main\scala\com\dylan\combat\CombatField.scala
 C:\Code\dylanh-web-rpg\src\main\scala\com\dylan\combat\Skill.scala -> C:\Code\dylanh-web-rpg\src\main\scala\com\dylan\combat\Combattant.scala
 C:\Code\dylanh-web-rpg\src\main\scala\com\dylan\data\algebra\PolynomialFunction.scala -> C:\Code\dylanh-web-rpg\src\main\scala\com\dylan\data\algebra\PolynomialFunction.scala
+C:\Code\dylanh-web-rpg\src\main\scala\com\dylan\combat\RecurringEffect.scala -> C:\Code\dylanh-web-rpg\src\main\scala\com\dylan\combat\Skill.scala
+C:\Code\dylanh-web-rpg\src\main\scala\com\dylan\combat\RecurringEffect.scala -> C:\Code\dylanh-web-rpg\src\main\scala\com\dylan\combat\Combattant.scala
 C:\Code\dylanh-web-rpg\src\test\scala\test\dylan\data\stats\StatsTest.scala -> C:\Code\dylanh-web-rpg\src\main\scala\com\dylan\data\stats\Stats.scala
 C:\Code\dylanh-web-rpg\src\test\scala\test\dylan\data\stats\StatsTest.scala -> C:\Code\dylanh-web-rpg\src\main\scala\com\dylan\data\stats\Criterea.scala
 C:\Code\dylanh-web-rpg\src\test\scala\test\dylan\data\stats\StatsTest.scala -> C:\Code\dylanh-web-rpg\src\main\scala\com\dylan\data\meta\Description.scala
