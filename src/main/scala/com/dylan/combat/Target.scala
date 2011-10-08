@@ -29,6 +29,11 @@ trait Target extends HasReactors {
 		//no reactor = no reaction
 		case Nil => Acceptance(effect) :: Nil
 	}
+
+	def takeDamage(d: Damage): Boolean
+	def takeHeal(h: Heal): Boolean
+	def addRecurringEffect(e: AddRecurringEffect): Boolean
+	def removeRecurringEffect(e: RemoveRecurringEffect): Boolean
 }
 
 /**

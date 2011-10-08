@@ -1,8 +1,6 @@
 package com.dylan.combat
 
-import org.jgrapht.Graph
 import scala.collection.JavaConversions._
-import org.jgrapht.alg.DijkstraShortestPath
 
 //class CombatField(val graph: Graph[CombatPosition, Adjacency]) {
 //

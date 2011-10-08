@@ -23,5 +23,5 @@ trait CombatTurnProvider {
 }
 
 trait SkillChoiceProvider {
-	def chooseSkill: Option[(Skill, Target)]
+	def chooseSkill(field: CombatField): Option[(Skill, Target)]
 }

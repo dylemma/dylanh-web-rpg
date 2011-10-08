@@ -1,13 +1,20 @@
 package com.dylan.combat
 
 sealed trait Effect {
+	/**
+	 * The source of an effect may be nothing, or may be from a combattant using a skill.
+	 */
 	def source: Option[(Combattant, Skill)]
+
+	/**
+	 * Return a modified version of this effect, where its effectiveness has been multiplied by a factor of `e`
+	 */
 	def withEffectiveness(e: Double): Effect
 }
 
 // Damage
 object Damage extends Enumeration {
-	val fire, cold, wind, earth, blunt, sharp = Value
+	val fire, cold, wind, earth, blunt, sharp, tru = Value
 	type Kind = Value
 }
 
@@ -16,10 +23,16 @@ case class Damage(amount: Double, kind: Damage.Kind, source: Option[(Combattant,
 }
 
 // Heal
-case class Heal(amount: Double, source: Option[(Combattant, Skill)]) extends Effect {
-	def withEffectiveness(e: Double) = Heal(amount * e, source)
+case class Heal(amount: Double, source: Option[(Combattant, Skill)], direct: Boolean) extends Effect {
+	def withEffectiveness(e: Double) = Heal(amount * e, source, direct)
 }
 
-//TODO Add Recurring Effect
+// Add a RecurringEffect
+case class AddRecurringEffect(source: Option[(Combattant, Skill)], effect: RecurringEffect) extends Effect {
+	def withEffectiveness(e: Double) = AddRecurringEffect(source, effect.withEffectiveness(e))
+}
 
-//TODO Remove Recurring Effect 
+// Remove a RecurringEffect 
+case class RemoveRecurringEffect(source: Option[(Combattant, Skill)], effect: RecurringEffect) extends Effect {
+	def withEffectiveness(e: Double) = this
+}

@@ -17,6 +17,6 @@ trait EffectStackExecutor {
 		}
 	}
 
-	def messageRecieved(source: Target, message: String): Unit
-	def effectApplied(target: Target, effect: Effect): Unit
+	protected def messageRecieved(source: Target, message: String): Unit
+	protected def effectApplied(target: Target, effect: Effect): Unit
 }
